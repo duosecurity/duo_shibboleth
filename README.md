@@ -2,7 +2,7 @@
 
 **duo_shibboleth** - Duo two-factor authentication components for Shibboleth
 
-# What's here
+What's here:
 
-## twofactor-login-handler - Duo two-factor authentication login handler for
+* `twofactor-login-handler` - Duo two-factor authentication login handler for
 Shibboleth 2
