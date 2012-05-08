@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://duosecurity.com/2012/shibboleth/idp/twofactor"
+            xmlns="http://duosecurity.com/2012/shibboleth/idp/twofactor"
+            xmlns:ph="urn:mace:shibboleth:2.0:idp:profile-handler"
+            elementFormDefault="qualified">
+
+  <xsd:import namespace="urn:mace:shibboleth:2.0:idp:profile-handler"
+              schemaLocation="classpath:/schema/shibboleth-2.0-idp-profile-handler.xsd" />
+
+    <xsd:complexType name="TwoFactorLogin">
+        <xsd:complexContent>
+            <xsd:extension base="ph:LoginHandlerType">
+                <xsd:attribute name="jaasConfigurationLocation" type="xsd:anyURI">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            Location of the JAAS configuration. If this attribute is used it will usually contain a file
+                            URL to a configuration on the local filesystem. However, this attribute need not be used and
+                            this information can be set within the VM in any manner supported by the JVM/container
+                            implementation.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="authenticationServletURL" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            The servlet context path to the
+                            com.duosecurity.shibboleth.idp.twofactor.TwoFactorLoginServlet
+                            that will authenticate the user.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="skey" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                          Secret key provided by Duo.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="ikey" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                          Integration key provided by Duo.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="akey" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                          Customer-generated application secret key,
+                          kept secret from Duo.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="host" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                          Duo API hostname.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+
+
+</xsd:schema>
