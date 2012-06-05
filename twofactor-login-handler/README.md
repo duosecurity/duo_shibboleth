@@ -112,6 +112,14 @@ Replace `skey`, `ikey`, `akey`, and `host` with approprate values.
         <logger name="org.duosecurity.shibboleth" level="INFO" />
     <!-- ... -->
 
+## Test it out
+
+Start the identity provider and authenticate against it with a
+Shibboleth service provider.  You should be prompted to enroll with
+Duo after successfully authenticating locally.  Then, on subsequent
+logins, you'll authenticate with Duo after successfully authenticating
+locally.
+
 # Support
 
 Report any bugs, feature requests, etc. to us directly:
