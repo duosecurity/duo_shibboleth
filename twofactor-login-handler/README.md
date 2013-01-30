@@ -37,7 +37,7 @@ identity provider installation trees.
 ## Build and install the login handler
 
     mvn package
-    cp target/twofactor-login-handler-0.1.jar .../shibboleth-identityprovider-2.X.X/lib/
+    cp target/twofactor-login-handler-0.2.jar .../shibboleth-identityprovider-2.X.X/lib/
         
 ## Configure Tomcat
 
