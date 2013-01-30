@@ -31,18 +31,18 @@ In a temporary directory, build a duo_java jar.
 Copy the jar into the lib directories of the login handler source and 
 identity provider installation trees.
 
-    cp duo.jar $SRC_DIR/lib
-    cp duo.jar $IDP_INSTALL_DIR/lib
+    cp duo.jar .../duo_shibboleth/twofactor-login-handler/lib/
+    cp duo.jar .../shibboleth-identityprovider-2.X.X/lib/
         
 ## Build and install the login handler
 
     mvn package
-    cp target/twofactor-login-handler-0.1.jar $IDP_INSTALL_DIR/lib
+    cp target/twofactor-login-handler-0.1.jar .../shibboleth-identityprovider-2.X.X/lib/
         
 ## Configure Tomcat
 
-Enable the servlet in `$IDP_INSTALL_DIR/src/main/webapp/WEB-INF/web.xml`.  The
-default location is `/Authn/DuoUserPassword`.
+Enable the servlet in `.../shibboleth-identityprovider-2.X.X/src/main/webapp/WEB-INF/web.xml`.
+The default location is `/Authn/DuoUserPassword`.
 
     <webapp>
         <!-- ... -->    
@@ -63,11 +63,11 @@ default location is `/Authn/DuoUserPassword`.
 ## Install the duo.jsp authentication page
 
 An example is in `examples/duo.jsp`.  Copy this into
-`$IDP_INSTALL_DIR/src/main/webapp` alongside the existing login.jsp page.
+`.../shibboleth-identityprovider-2.X.X/src/main/webapp` alongside the existing login.jsp page.
 
 ## Deploy Tomcat
 
-Back up any existing IdP config, then `$IDP_INSTALL_DIR/install.sh`.
+Back up any existing IdP config, then `.../shibboleth-identityprovider-2.X.X/install.sh`.
 
 ## Serve the Duo Web Javascript page
 
