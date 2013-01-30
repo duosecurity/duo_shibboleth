@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.duosecurity.shibboleth.idp.twofactor</groupId>
     <artifactId>twofactor-login-handler</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <packaging>jar</packaging>
 
     <name>Two Factor LoginHandler</name>
@@ -12,12 +12,10 @@
     
     <repositories>
         <repository>
-            <id>shibboleth.internet2.edu</id>
-            <name>Internet2</name>
-            <layout>default</layout>
-            <url>http://shibboleth.internet2.edu/downloads/maven2</url>
+            <id>shib-release</id>
+            <url>https://build.shibboleth.net/nexus/content/groups/public</url>
             <snapshots>
-                <enabled>false</enabled>
+              <enabled>false</enabled>
             </snapshots>
         </repository>
     </repositories>
