@@ -7,6 +7,8 @@
 <html>
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shibboleth Identity Provider - Duo Authentication</title>
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/login.css"/>
   </head>
@@ -19,15 +21,22 @@
        <a href="https://wiki.shibboleth.net/confluence/display/SHIB2/IdPAuthUserPassLoginPage" target="_blank"> documentation</a>.
     </p>
      <div class="content">
-       <script src="/Duo-Web-v1.bundled.js"></script>
-       <script>
-         Duo.init({
-           'host': "<%=request.getAttribute("host")%>",
-           'sig_request': "<%=request.getAttribute("sigRequest")%>",
-           'post_action': "<%=request.getAttribute("actionUrl")%>"
-         });
-       </script>
-       <iframe height="500" width="620" id="duo_iframe" frameborder="0"></iframe>
+       <script src="/Duo-Web-v2.min.js"></script>
+       <iframe id="duo_iframe"
+                data-host="<%=request.getAttribute("host")%>"
+                data-sig-request="<%=request.getAttribute("sigRequest")%>"
+                data-post-action="<%=request.getAttribute("actionUrl")%>"
+                frameborder="0"
+       >
+       </iframe>
+       <style>
+         #duo_iframe {
+           width: 100%;
+           min-width: 304px;
+           max-width: 620px;
+           height: 330px;
+         }
+       </style>
      </div>
   </body>
 </html>
