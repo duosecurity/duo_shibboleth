@@ -7,7 +7,7 @@ This login handler allows you to quickly add Duo's interactive, self-service, tw
 
 # Usage
 
-Documentation: <http://www.duosecurity.com/docs/shibboleth>
+Documentation: <http://www.duosecurity.com/docs/shibboleth-v2>
 
 # Support
 

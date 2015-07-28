@@ -1,0 +1,48 @@
+##
+## Velocity Template for DuoTwoFactorIFrame view-state
+##
+## Velocity context will contain the following properties
+## authenticationContext - context with authentication request information
+## usernamePasswordContext - context with username state
+## environment - Spring Environment object for property resolution
+## request - HttpServletRequest
+## duoRequest - 
+##
+#set ($duoHost = $environment.getProperty("duo.host", ""))
+##
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Duo Authentication</title>
+        <script src="$request.getContextPath()/js/Duo-Web-v2.min.js"></script>
+    </head>
+        <body style="text-align: center;">
+            <h1>Duo Authentication</h1>
+            <iframe id="duo_iframe"
+                data-host="$duoHost"
+                data-sig-request="$duoRequest"
+                data-post-action="$flowExecutionUrl"
+                frameborder="0"
+            >
+            </iframe>
+            <style>
+              #duo_iframe {
+                width: 100%;
+                min-width: 304px;
+                max-width: 620px;
+                height: 330px;
+              }
+            </style>
+            <form method="POST" id="duo_form">
+                <input type="hidden" name="_eventId_proceed" value="transition" />
+            </form>
+            <!--[if IE 8]>
+                <script>
+                    setTimeout(Duo.ready, 2000);
+                </script>
+            <![endif]-->
+        </body>
+</html>

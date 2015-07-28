@@ -1,0 +1,52 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <!--
+    Perform preauth if failmode requires it. Display Duo iFrame to user.
+    On successful verification of two-factor authentication, return to remaining flow.
+    On DuoWebException and non-validated iFrame responses, display the iFrame. For all other exceptions, display the
+    default Shibboleth IDP3 error page.
+    -->
+
+    <!-- Rudimentary impediment to direct execution of subflow. -->
+    <input name="calledAsSubflow" type="boolean" required="true" />
+
+    <on-start>
+        <evaluate expression="opensamlProfileRequestContext.getSubcontext(T(net.shibboleth.idp.authn.context.AuthenticationContext))" result="flowScope.authenticationContext" />
+        <evaluate expression="authenticationContext.getSubcontext(T(net.shibboleth.idp.authn.context.UsernamePasswordContext))" result="flowScope.usernamePasswordContext" />
+        <evaluate expression="T(com.duosecurity.integrations.DuoShibboleth).instance(environment.getProperty('duo.ikey', ''), environment.getProperty('duo.skey', ''), environment.getProperty('duo.akey', ''), environment.getProperty('duo.host', ''), usernamePasswordContext.getUsername())" result="flowScope.duo" />
+    </on-start>
+
+    <!-- Perform Failmode Processing -->
+    <action-state id="DuoTwoFactorPreauth">
+        <evaluate expression="duo.performPreauth(environment.getProperty('duo.failmode', 'safe'))"/>
+        
+        <transition on="allow" to="proceed" />
+        <transition on="auth" to="DuoTwoFactorIFrame" />
+    </action-state>
+
+    <!-- Display Duo iFrame -->
+    <view-state id="DuoTwoFactorIFrame" view="duo">
+        <on-render>
+            <evaluate expression="environment" result="viewScope.environment" />
+            <evaluate expression="duo.signRequest()" result="viewScope.duoRequest" />
+            <evaluate expression="flowRequestContext.getExternalContext().getNativeRequest()" result="viewScope.request" />
+        </on-render>
+
+        <transition to="DuoAuthValidateResponse" />
+    </view-state>
+
+    <!-- Validate Duo iFrame response -->
+    <action-state id="DuoAuthValidateResponse">
+        <evaluate expression="duo.verifyResponseEqualsUsername(requestParameters.sig_response)"/>
+        
+        <!-- Proceed on successful authentication -->
+        <transition on="yes" to="proceed" />
+        <!-- Show Duo iFrame on non-true validation result -->
+        <transition to="DuoTwoFactorIFrame" />
+    </action-state>
+
+    <end-state id="proceed" />
+
+</flow>
