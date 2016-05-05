@@ -81,6 +81,21 @@ public class DuoShibbolethTest {
     }
 
     @Test
+    public void testverifyResponseEqualsUsername_whenResponseValidAndConfigHasWhitespace() {
+        duoShibboleth = DuoShibboleth.instance(" DIXXXXXXXXXXXXXXXXXX ",
+            "\tdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef\t \t",
+            " useacustomerprovidedapplicationsecretkey ",
+            " fakeurl ",
+            "testuser");
+        String request_sig = duoShibboleth.signRequest();
+        String[] sigs = request_sig.split(":");
+        String app_sig = sigs[1];
+
+        String response = "AUTH|dGVzdHVzZXJ8RElYWFhYWFhYWFhYWFhYWFhYWFh8MTYxNTcyNzI0Mw==|d20ad0d1e62d84b00a3e74ec201a5917e77b6aef:" + app_sig;
+        assertTrue(duoShibboleth.verifyResponseEqualsUsername(response));
+    }
+
+    @Test
     public void testverifyResponseEqualsUsername_whenResponseForAnotherUser() {
         String request_sig = duoShibboleth.signRequest();
         String[] sigs = request_sig.split(":");

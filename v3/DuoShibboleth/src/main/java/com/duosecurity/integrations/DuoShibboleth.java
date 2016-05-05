@@ -37,7 +37,7 @@ public class DuoShibboleth {
         if (username == null) {
             throw new IllegalArgumentException("Null value not allowed for username");
         }
-        return new DuoShibboleth(ikey, skey, akey, host, username);
+        return new DuoShibboleth(ikey.trim(), skey.trim(), akey.trim(), host.trim(), username);
     }
 
     private DuoShibboleth() {

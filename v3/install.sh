@@ -143,9 +143,9 @@ if [ $? != 0 ]; then
 fi
 
 # install the shibboleth jar
-cp IDP_HOME/edit-webapp/WEB-INF/lib/DuoShibboleth-1.0.jar "$SHIBBOLETH"/edit-webapp/WEB-INF/lib/
+cp IDP_HOME/edit-webapp/WEB-INF/lib/DuoShibboleth-1.0.1.jar "$SHIBBOLETH"/edit-webapp/WEB-INF/lib/
 if [ $? != 0 ]; then
-    echo 'Could not copy DuoShibboleth-1.0.jar, please contact support@duosecurity.com'
+    echo 'Could not copy DuoShibboleth-1.0.1.jar, please contact support@duosecurity.com'
     echo 'exiting'
     exit 1
 fi
