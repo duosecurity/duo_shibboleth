@@ -18,9 +18,9 @@
     <dependency>
       <groupId>com.duosecurity.duoweb</groupId>
       <artifactId>DuoWeb</artifactId>
-      <version>1.1</version>
+      <version>1.2</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/../IDP_HOME/edit-webapp/WEB-INF/lib/DuoWeb-1.1-SNAPSHOT.jar</systemPath>
+      <systemPath>${project.basedir}/../IDP_HOME/edit-webapp/WEB-INF/lib/DuoWeb-1.2-SNAPSHOT.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>com.duosecurity.client</groupId>

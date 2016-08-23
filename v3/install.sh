@@ -127,9 +127,9 @@ fi
 echo "Copying in Duo application files..."
 
 # install the duo_java jar
-cp IDP_HOME/edit-webapp/WEB-INF/lib/DuoWeb-1.1-SNAPSHOT.jar "$SHIBBOLETH"/edit-webapp/WEB-INF/lib/
+cp IDP_HOME/edit-webapp/WEB-INF/lib/DuoWeb-1.2-SNAPSHOT.jar "$SHIBBOLETH"/edit-webapp/WEB-INF/lib/
 if [ $? != 0 ]; then
-    echo 'Could not copy DuoWeb-1.1-SNAPSHOT.jar, please contact support@duosecurity.com'
+    echo 'Could not copy DuoWeb-1.2-SNAPSHOT.jar, please contact support@duosecurity.com'
     echo 'exiting'
     exit 1
 fi
