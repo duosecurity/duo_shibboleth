@@ -1,12 +1,12 @@
 # Overview
 
-**duo_shibboleth** - Duo two-factor authentication for Shibboleth Identity Provider v2/3
+**duo_shibboleth** - Duo two-factor authentication for Shibboleth Identity Provider v3
 
 This code allows you to quickly add Duo's interactive, self-service, two-factor authentication to any Shibboleth IdP.
 
 # Usage
 
-Documentation: <https://www.duosecurity.com/docs/shibboleth> and <https://www.duosecurity.com/docs/shibboleth-v2>
+Documentation: <https://www.duosecurity.com/docs/shibboleth>
 
 # Support
 
